@@ -1,13 +1,13 @@
 Sample source files to accompany the paper:
 
 "EIGENREC: An Efficient and Scalable Latent Factor Family for Top-N Recommendation"
-written by T. Nikolakopoulos, V. Kalantzis, and J. Garofalakis.
+written by Athanasios N. Nikolakopoulos, Vassilis Kalantzis, and John D. Garofalakis.
 
 
 -----------------------------------------------------------------------------
                                    EIGENREC
    
-      Copyright (C) 2015 Vassilis Kalantzis, Athanasios Nikolakopoulos
+      Copyright (C) 2017 Vassilis Kalantzis, Athanasios Nikolakopoulos
 -----------------------------------------------------------------------------
  
 This file is part of EIGENREC.
@@ -46,7 +46,7 @@ A is never formed explicitly.
 Release:
 --------
 
-Release 1.0
+Release 1.1
 
 
 ---------------
@@ -88,9 +88,9 @@ the present release.
 Primary developers (in alphabetical order):
 -------------------------------------------
 
-1) Vassilis Kalantzis,    kalantzis@cs.umn.edu
+1) Vassilis Kalantzis,    kalan019@umn.edu
 
-2) Thanos Nikolakopoulos, nikolako@ceid.upatras.gr
+2) Thanos Nikolakopoulos, anikolak@umn.edu
 
 For any questions or bug reports, please contact
 any of the developers listed above.

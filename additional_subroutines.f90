@@ -1,10 +1,9 @@
-!-------------------------------------------!
-!This file is part of the EIGENREC library  !
-!-------------------------------------------!
-!Vassilis Kalantzis, University of Minnesota!
-!Thanos Nikolakopoulos, University of Patras!
-!-------------------------------------------!
-
+﻿!-------------------------------------------!                                                                                                                       
+!This file is part of the EIGENREC library  !                                                                                                                                                              
+!-------------------------------------------!                                                                                                                                                             
+!Vassilis Kalantzis, Thanos Nikolakopoulos  !                                                                                                                                                             
+!          University of Minnesota          !                                                                                                                                       
+!-------------------------------------------! 
 SUBROUTINE pddot(CHUNK, x, y, glob, timings2, RANK, COMM)
 !Element-wise dot product
 IMPLICIT NONE

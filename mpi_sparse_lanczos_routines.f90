@@ -1,8 +1,8 @@
-!-------------------------------------------!
+﻿!-------------------------------------------!
 !This file is part of the EIGENREC library  !
 !-------------------------------------------!
-!Vassilis Kalantzis, University of Minnesota!
-!Thanos Nikolakopoulos, University of Patras!
+!Vassilis Kalantzis, Thanos Nikolakopoulos  !
+!          University of Minnesota          !
 !-------------------------------------------!
 
 SUBROUTINE EIGENREC(local_a, local_ia, local_ja, local_nnz, local_rows, local_cols, N, CONV_EIGVECS, Da, nev, tol, msteps, timings, SZ, RANK, COMM)
@@ -36,11 +36,11 @@ INTEGER                                                  :: LDWORK
 INTEGER                                                  :: LIWORK
 DOUBLE PRECISION                                         :: normy, beta, alpha, time1, time2
 DOUBLE PRECISION, DIMENSION(2)                           :: timings2
-INTEGER                                                  :: W, I, IERR, INFO, CONV_EIGVECS_COUNT, CHUNK
+INTEGER                                                  :: W, I, IERR, INFO, CONV_EIGVECS_COUNT, CHUNK, nev2
 INTEGER                                                  :: status(MPI_STATUS_SIZE)
 INTEGER                                                  :: ISEED
 
-nev = 0D0
+nev2 = 0D0
 
 LDWORK = 2D0*(1D0 + 4D0*msteps + msteps**2)
 LIWORK = 6D0*msteps
@@ -110,6 +110,8 @@ DO I = 1, msteps
 
 ENDDO
 
+IF (RANK == 0) THEN; WRITE(*,*) "Lanczos main loop is over"; ENDIF
+
 !--- Extract off-diagonal entries of the tridiagonal matrix
 DO I = 1, msteps
    Da(I) = T(I,I)
@@ -118,6 +120,8 @@ DO I = 1, msteps
    ENDIF
 ENDDO
 
+IF (RANK == 0) THEN; WRITE(*,*) "Triadiagonal matrix formed"; ENDIF
+
 !--- Solve the tridiagonal eigenvalue problem and form approximate eigvectors
 CALL MPI_BARRIER(COMM, IERR)
 time1 = MPI_WTIME()
@@ -125,25 +129,32 @@ time1 = MPI_WTIME()
 beta = Db(msteps-1)
 CALL DSTEVD('V', msteps, Da, Db, Z, msteps, WORK, LDWORK, IWORK, LIWORK, INFO)
 CALL DGEMM("N", "N", CHUNK, msteps, msteps, 1.0D0, V(1:CHUNK,1:msteps), CHUNK, Z, msteps, 0.0D0, Vn, CHUNK)
+IF (RANK == 0) THEN; WRITE(*,*) "Tridiagonal eigenvalue problem solved"; ENDIF
 
 !--- Trick to check residuals
 RES2 = 0.0D0
 DO I = 1, msteps
    RES2(msteps-I+1) = ABS(beta)*ABS(Z(msteps,msteps-I+1))
    IF (RES2(msteps-I+1) .LE. tol) THEN
-      nev = nev + 1D0
-      CONV_EIGVECS(:,nev) = Vn(:,msteps-I+1)
+      nev2 = nev2 + 1D0
+      CONV_EIGVECS(:,nev2) = Vn(:,msteps-I+1)
       !IF (RANK == 0) THEN
-      !   WRITE(*,*) nev, abs(Z(msteps,msteps-I+1))
+      !   WRITE(*,*) nev, RES2(msteps-I+1), Da(msteps-I+1)
       !ENDIF
    ENDIF
+   IF (nev2 == nev) THEN
+     EXIT
+   ENDIF
 ENDDO
+IF (RANK == 0) THEN; WRITE(*,*) "Residuals checked"; ENDIF
 
 CALL MPI_BARRIER(COMM, IERR)
 time2 = MPI_WTIME()
 timings(7) = time2 - time1
 
 DEALLOCATE(V, T, Z, Vn, y, yold, Ay, t2, WORK, IWORK)
+
+IF (RANK == 0) THEN; WRITE(*,*) "Deallocation of resources completed -- returning to main"; ENDIF
 
 ENDSUBROUTINE EIGENREC
 

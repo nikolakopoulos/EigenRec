@@ -1,18 +1,18 @@
-PROGRAM driver_eigenrec
+﻿PROGRAM driver_eigenrec
 
 IMPLICIT NONE
 INCLUDE 'mpif.h'
 
-!-------------------------------------------!
-!This file is part of the EIGENREC library  !
-!-------------------------------------------!
-!Vassilis Kalantzis, University of Minnesota!
-!Thanos Nikolakopoulos, University of Patras!
-!-------------------------------------------!
+!-------------------------------------------!                                                                                                                                                             
+!This file is part of the EIGENREC library  !                                                                                                                                                             
+!-------------------------------------------!                                                                                                                                                             
+!Vassilis Kalantzis, Thanos Nikolakopoulos  !                                                                                                                                                             
+!          University of Minnesota          !                                                                                                                                                             
+!-------------------------------------------! 
 
-!-------------------------!
-!Date: 11 / 11 / 2015, USA!
-!-------------------------!
+!-------------------------------------------!
+!Date: 06 / 13 / 2017, Minneapolis, MN, USA !
+!-------------------------------------------!
 
 !----------------!
 !Define variables!
@@ -48,7 +48,7 @@ INTEGER                                           :: row_start, counter2, set, J
 !----------------------------------------------------!
 !Choice to distribute the matrix row-wise or nnz-wise!
 !----------------------------------------------------!
-row_wise = 0D0
+row_wise = 1D0
 
 !--------------------------!
 !Initialize MPI environment!
@@ -391,7 +391,7 @@ IF (choice == 1D0) THEN
       WRITE(*, *) "Time spent on communication for the MV products: ", timings_lanczos(4)
       WRITE(*, *) "Time spent on DOTS: ", timings_lanczos(3)
       WRITE(*, *) "Time spent on communication for the DOTS: ", timings_lanczos(5)
-      WRITE(*, *) "Time spent on re-orthogonalization: ", timings_lanczos(6)
+      WRITE(*, *) "Time spent on orthogonalization: ", timings_lanczos(6)
       WRITE(*, *) "Time spent on the Rayleigh-Ritz procedure: ", timings_lanczos(7)
       WRITE(*, *) "Number of MV products: ", lanczos_steps
       WRITE(*, *) "/--------------------------------------------/"

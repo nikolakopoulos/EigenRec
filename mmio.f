@@ -1,4 +1,4 @@
-      subroutine mmread(iunit,rep,field,symm,rows,cols,nnz,nnzmax,
+﻿      subroutine mmread(iunit,rep,field,symm,rows,cols,nnz,nnzmax,
      *                 indx,jndx,ival,rval,cval)
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc      
 c
