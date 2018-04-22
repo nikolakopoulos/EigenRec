@@ -14,7 +14,7 @@ EIGENREC Computes the Recommendation Matrix
     
   If you use our code please cite our paper
 
-  "EIGENREC: Generalizing PureSVD for Effective and Efficient Top-N Recommendations" 
+A. N. Nikolakopoulos, V. Kalantzis, E. Gallopoulos and J. D. Garofalakis, "EigenRec: Generalizing PureSVD for Effective and Efficient Top-N Recommendations,"  Knowl. Inf. Syst.,  2018. doi: 10.1007/s10115-018-1197-7 
 
  -------------------------------------------
  Primary developers (in alphabetical order):
@@ -24,5 +24,5 @@ EIGENREC Computes the Recommendation Matrix
  For any questions or bug reports, please contact
  one of the developers listed above.
  
- Copyright (C) 2017 Vassilis Kalantzis, Athanasios N. Nikolakopoulos
+ Copyright (C) 2018 Vassilis Kalantzis, Athanasios N. Nikolakopoulos
  Release 1.0
