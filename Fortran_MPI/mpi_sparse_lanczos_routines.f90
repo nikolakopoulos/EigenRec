@@ -1,9 +1,9 @@
-!-------------------------------------------!
-!This file is part of the EIGENREC library  !
-!-------------------------------------------!
-!Vassilis Kalantzis, Thanos Nikolakopoulos  !
-!          University of Minnesota          !
-!-------------------------------------------!
+!--------------------------------------------------!
+!   This file is part of the EIGENREC library      !                                                                                                                                                              
+!--------------------------------------------------!                                                                                                                                                             
+!Vassilis Kalantzis, Athanasios N. Nikolakopoulos  !                                                                                                                                                             
+!          University of Minnesota                 !                                                                                                                                       
+!--------------------------------------------------! 
 
 SUBROUTINE EIGENREC(local_a, local_ia, local_ja, local_nnz, local_rows, local_cols, N, CONV_EIGVECS, Da, nev, tol, msteps, timings, SZ, RANK, COMM)
 
