@@ -1,3 +1,10 @@
+!--------------------------------------------------!
+!   This file is part of the EIGENREC library      !                                                                                                                                                              
+!--------------------------------------------------!                                                                                                                                                             
+!Vassilis Kalantzis, Athanasios N. Nikolakopoulos  !                                                                                                                                                             
+!          University of Minnesota                 !                                                                                                                                       
+!--------------------------------------------------! 
+
 PROGRAM driver_eigenrec
 
 IMPLICIT NONE
