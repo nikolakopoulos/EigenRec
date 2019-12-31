@@ -33,6 +33,7 @@ function [ Pi, dt ] = EigenRec( R, f, d )
 
 % Example using the Cosine Similarity Matrix (see our paper for details)
 W = R*diag(diag(sparse(diag(sqrt(diag(R'*R)))).^(d-1))); % The inter-item similarity matrix A_cos = W'*W
+W(isnan(W))=0;
 [n,m] = size(W);
 OPTS.issym = 1; OPTS.tol = 1e-8;
 tic
